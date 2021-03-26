@@ -32,8 +32,8 @@ echo ''
 echo -e '$USERPASSWORD\n$USERPASSWORD' | passwd $USERNAME
 
 echo '############ installing needed software'
-pacman --noconfirm -Sq nano grub openssh sudo git networkmanager reflector >> '/dev/null'
-reflector -c pl 
+pacman --noconfirm -Sq nano grub openssh sudo networkmanager reflector >> '/dev/null'
+reflector -c pl  >> '/dev/null'
 
 echo '############ setting up sshd'
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' '/etc/ssh/sshd_config'
@@ -42,7 +42,7 @@ echo '############ setting up visudo'
 EDITOR='sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g"' visudo
 
 echo '############ enabling networkmanager'
-systemctl enable NetworkManager
+systemctl enable NetworkManager >> '/dev/null'
 
 echo '############ setting up grub'
 echo -e '\nGRUB_FORCE_HIDDEN_MENU="true"' >> '/etc/default/grub'
@@ -50,4 +50,5 @@ curl -s 'https://gist.githubusercontent.com/anonymous/8eb2019db2e278ba99be/raw/2
 chmod a+x '/etc/grub.d/31_hold_shift'
 grub-mkconfig -o '/boot/grub/grub.cfg'
 read -p '### enter device to install grub (eg /dev/sda): ' DEVICE
-grub-install $DEVICE
+grub-install $DEVICE >> '/dev/null'
+echo '############ ALL DONE'
