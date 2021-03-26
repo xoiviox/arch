@@ -44,6 +44,9 @@ EDITOR='sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g"' visudo
 echo '############ enabling networkmanager'
 systemctl enable NetworkManager >> '/dev/null'
 
+echo '############ enabling sshd'
+systemctl enable sshd
+
 echo '############ setting up grub'
 echo -e '\nGRUB_FORCE_HIDDEN_MENU="true"' >> '/etc/default/grub'
 curl -s 'https://gist.githubusercontent.com/anonymous/8eb2019db2e278ba99be/raw/257f15100fd46aeeb8e33a7629b209d0a14b9975/gistfile1.sh' -o '/etc/grub.d/31_hold_shift'
