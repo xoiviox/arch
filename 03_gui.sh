@@ -9,5 +9,9 @@ pacman --noconfirm -Sq pavucontrol pulseaudio alsa-utils lightdm lightdm-gtk-gre
 pacman --noconfirm -Sq nm-connection-editor network-manager-applet networkmanager-openvpn
 pacman --noconfirm -Sq gnome-system-monitor
 
+echo '############ installing package build tools'
+pacman --noconfirm -Sq gcc make autoconf cmake yasm nasm libtool intltool pkg-config
+
 echo '############ enabling lightdm'
 systemctl enable lightdm
+
